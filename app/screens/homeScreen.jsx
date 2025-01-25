@@ -1,4 +1,4 @@
-import { Image, View, Text, FlatList, TextInput, TouchableOpacity, Button } from 'react-native';
+import { Image, View, Text, FlatList, TextInput, TouchableOpacity, Button, Modal } from 'react-native';
 
 import { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,6 +11,7 @@ const NEWS_API = "183daca270264bad86fc5b72972fb82a";
 export default function HomeScreen() {
   const [searchKey, setSearchKey] = useState("");
   const [hotTopics, setHotTopics] = useState([]);
+	const [filterModalVisible, setFilterModalVisible] = useState(false)
   const navigation = useNavigation()
 
   let currentDate = new Date();
@@ -85,17 +86,38 @@ export default function HomeScreen() {
           margin: 20,
           alignItems: "center",
           paddingLeft: 15,
-          flexDirection: "row"
+          flexDirection: "row",
+					justifyContent: "space-between"
         }}>
-          <Ionicons size={20} color="gray" name="search"/>
-          <TextInput 
-            style={{ marginLeft: 10 }}
-            value={searchKey}
-            onChangeText={setSearchKey}
-						placeholder="search here"
-						onSubmitEditing={() => navigation.navigate("SearchResult", searchKey)}
-          />
+					<View style={{alignItems: "center", flexDirection: "row"}}>
+						<Ionicons size={20} color="gray" name="search"/>
+						<TextInput 
+							style={{ marginLeft: 10 }}
+							value={searchKey}
+							onChangeText={setSearchKey}
+							placeholder="search here"
+							onSubmitEditing={() => navigation.navigate("SearchResult", searchKey)}
+						/>
+					</View>
+					<TouchableOpacity
+						onPress={() => setFilterModalVisible(false)}
+					>
+						<Ionicons style={{ marginRight: 10 }} size={20} color="lightblue" name="arrow-down-circle"/>
+					</TouchableOpacity>
         </View>
+				<Modal 
+					animationType="slide"
+          transparent={true}
+          visible={filterModalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            setFilterModalVisible(!filterModalVisible);
+          }}
+				>
+					<View>
+						<Text>Filter goes here</Text>
+					</View>
+				</Modal>
       </View>
       <View id="hot-topic" style={{
         flex: 0.7,
