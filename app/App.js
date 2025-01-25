@@ -13,7 +13,12 @@ const RootStack = createNativeStackNavigator({
       }
     },
     News: NewsScreen,
-    SearchResult: SearchResult
+    SearchResult: {
+      screen: SearchResult,
+      options: {
+        headerTitle: "Search result"
+      }
+    }
   },
 });
 

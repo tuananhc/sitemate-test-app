@@ -49,7 +49,11 @@ export default function SearchResult({ route }) {
 	}, [])
 
 	return (
-		<View style={{flex: 1}}>
+		<View style={{flex: 1, padding: 10}}>
+			<Text style={{ fontSize: 20, marginBottom: 10 }}>
+				Search result for:
+				<Text style={{ fontWeight: "bold" }}> {params}</Text>
+			</Text>
 			<FlatList 
 				data={searchResult}
 				renderItem={item => renderItem(item.item)}

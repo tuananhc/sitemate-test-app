@@ -46,7 +46,13 @@ export default function HomeScreen() {
         }}
         onPress={() => navigation.navigate("News", item)}
       >
-        <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
+        <Text style={{ 
+					fontWeight: "bold", 
+					fontSize: 15, 
+					marginBottom: 5 
+				}}>
+					{item.title}
+				</Text>
         { (item.author)
         ? <Text>{item.author}</Text> 
         : <></>
@@ -59,18 +65,19 @@ export default function HomeScreen() {
     <SafeAreaView style={{ flex: 1 }}>
       <View id="search-box" style={{
         flex: 0.3, 
-        justifyContent: "space-around",
+        justifyContent: "flex-end",
         alignItems: "center"
       }}>
         <Text style={{ 
           fontWeight: "bold",
-          fontSize: 20 
+          fontSize: 20,
+					marginBottom: 70
         }}>
-          Today is {currentDate.toLocaleDateString()}
+          Today is {currentDate.toLocaleDateString("en-GB")}
         </Text>
         <Text>What are you looking for?</Text>
         <View style={{
-          flex: 0.2,
+          flex: 0.35,
           width: "85%",
           borderWidth: 1,
           borderRadius: 30,
@@ -97,10 +104,11 @@ export default function HomeScreen() {
         <Text style={{
           fontWeight: "bold",
           fontSize: 25,
-          margin: 20
+          margin: 20,
+					color: "red"
         }}
         >
-          Top Trending Today
+          Top Trending News Today
         </Text>
         <View style={{ 
           flex: 1,
